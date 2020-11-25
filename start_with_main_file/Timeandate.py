@@ -94,9 +94,6 @@ def DATESANDTIMES(DIRECTORY_PATH):
     obj.moves(mover,DIRECTORY_PATH)
     obj.extrafolder(DIRECTORY_PATH)
 
-if __name__ == "__main__":
-    PATH = 'C:\\Users\\Mau\\Desktop\\testing'
-    DATESANDTIMES(PATH)
 
 
 

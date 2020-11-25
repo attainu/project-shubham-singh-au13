@@ -1,7 +1,7 @@
 import os
 import shutil
 from pathlib import Path
-
+from Checker import main
 class PathOrganise:
     def extension(self,DIRECTORY_PATH,File_extension,ALL_FILES):
         for FILES in ALL_FILES:
@@ -40,9 +40,6 @@ def PATHORGANISERS(DIRECTORY_PATH):
     
 
 
-if __name__ == "__main__":
-    DIRECTORY_PATH='C:\\Users\\Mau\\Desktop\\testing'
-    PATHORGANISERS(DIRECTORY_PATH)
 
 
 

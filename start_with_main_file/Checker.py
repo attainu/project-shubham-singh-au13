@@ -1,5 +1,6 @@
 import os
-# x=input() #PATH OF FILE LOCATION
+
+
 
 class Checker:
     def filechecker(self,SOURCE_PATH,DIRECTORY_PATH):
@@ -16,14 +17,13 @@ class Checker:
                 os.rmdir(folder[0])
 def main(SOURCE_PATH,DIRECTORY_PATH):
     if len(SOURCE_PATH)==1:
-        print("Enter the valid Input")
+        print("Enter the valid Path")
         return
+    if os.path.exists(SOURCE_PATH)==False:
+        print("Enter valid path")
+        return 
     obj=Checker()
     obj.filechecker(SOURCE_PATH,DIRECTORY_PATH)
     obj.folderremove(DIRECTORY_PATH)
 
-if __name__ == "__main__":
-    DIRECTORY_PATH=''
-    SOURCE_PATH=''
-    main(DIRECTORY_PATH, SOURCE_PATH)
 

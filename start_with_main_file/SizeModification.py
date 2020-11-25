@@ -83,7 +83,3 @@ def SIZEORGANISER(DIRECTORY_PATH):
     obj.extrafolder(DIRECTORY_PATH)
 
 
-
-if __name__ == "__main__":
-    DIRECTORY_PATH = 'C:\\Users\\Mau\\Desktop\\testing'
-    SIZEORGANISER(DIRECTORY_PATH)
