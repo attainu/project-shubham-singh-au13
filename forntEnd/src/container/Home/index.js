@@ -5,12 +5,13 @@ import CardMedia from '@material-ui/core/CardMedia';
 import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
 import { red } from '@material-ui/core/colors';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
 import AllMedicines from './../../redux/action/AllMedicine/index';
 import LoderOperation from './../../redux/action/Loder/index';
-
+import Models from './../../compnent/Modal'
+import PATH from './../../config/webPath';
 const useStyles = makeStyles((theme) => ({
   root: {
     maxWidth: 345,
@@ -33,9 +34,20 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: red[500],
   },
 }));
-const Home =()=>{
+const Home =({history})=>{
+  const [open,setOpen]=useState(false)
+  const handleOpen = (e) => {
+    setOpen(true);
+    e.stopPropagation()
+  };
+
+  const handleClose = (e) => {
+    setOpen(false);
+    e.stopPropagation()
+  };
     const classes = useStyles();
     const MEDICINE=useSelector(({Allmedicine})=>Allmedicine)
+    const TYPE=useSelector(({Type})=>Type)
     const dispatch=useDispatch()
     useEffect(()=>{
         // http://localhost:2000/shoapkeper/allmedicine?name=combiflame search parameter
@@ -48,12 +60,15 @@ const Home =()=>{
           dispatch(LoderOperation.hide())
         })
     },[dispatch])
+    const DETAIL=(id)=>{
+     history.push(`${PATH.MEDICINEDETAIL}/${id}`)
+    }
     return (
         <>
         <div style={{display:'flex',margin:'2%' ,flexWrap:'wrap',justifyContent:'space-between'}}>
         {MEDICINE.map((item,i)=>{
             return (
-        <Card className={classes.root} key={i} >
+        <Card className={classes.root} key={i} onClick={(e)=>TYPE.length===0?handleOpen(e):TYPE==='user'?DETAIL(item._id):null}>
           <CardMedia
             className={classes.media}
             image={item?.photo}
@@ -78,6 +93,8 @@ const Home =()=>{
             )
         })}
         </div>
+        {MEDICINE.length>0 && TYPE.length===0 ?<Models handleClose={handleClose}
+        handleOpen={handleOpen} open={open} />:null}
         </>
     )
 }
